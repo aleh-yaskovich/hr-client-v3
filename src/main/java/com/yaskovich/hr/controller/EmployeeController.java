@@ -1,4 +1,4 @@
-package com.yaskovich.hr.controllers;
+package com.yaskovich.hr.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
