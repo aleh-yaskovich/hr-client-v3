@@ -1,0 +1,24 @@
+<div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a th:attr="class=${active == 'departments' ? 'nav-link active' : 'nav-link'}"
+                   th:href="@{../../departments}">Departments</a>
+            </li>
+            <li class="nav-item">
+                <a th:attr="class=${active == 'employees' ? 'nav-link active' : 'nav-link'}"
+                   th:href="@{../../employees}">Employees</a>
+            </li>
+        </ul>
+        <a class="navbar-brand" href="" data-bs-toggle="modal" data-bs-target="#searchModal">
+            <i class="bi bi-search h5"></i>
+        </a>
+        <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+            <i class="bi bi-box-arrow-in-right h5"></i>
+        </a>
+    </div>
+</div>
