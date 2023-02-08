@@ -5,14 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.sql.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class DepartmentFull {
-
+public class EmployeeBase {
     private Long id;
-    private String title;
-    private Integer numberOfEmployees;
-    private String avgSalary;
+    private String firstName;
+    private String lastName;
+    private String salary;
+    private Date hiring;
 }

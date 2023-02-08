@@ -1,9 +1,9 @@
 package com.yaskovich.hr.service;
 
 import com.yaskovich.hr.controller.model.BaseModel;
-import com.yaskovich.hr.controller.model.DepartmentRequestModel;
-import com.yaskovich.hr.entity.DepartmentBase;
-import com.yaskovich.hr.entity.DepartmentFull;
+import com.yaskovich.hr.controller.model.EmployeeFullRequestModel;
+import com.yaskovich.hr.entity.EmployeeBase;
+import com.yaskovich.hr.entity.EmployeeFull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,70 +17,70 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class DepartmentServiceRest {
+public class EmployeeServiceRest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentServiceRest.class);
-    @Value("${department.uri}") private String URL;
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeServiceRest.class);
+    @Value("${employee.uri}") private String URL;
     @Autowired
     private RestTemplate restTemplate;
 
-    public List<DepartmentFull> getDepartments() {
-        LOGGER.debug("Method getDepartments() started");
+    public List<EmployeeBase> getEmployees() {
+        LOGGER.debug("Method getEmployees() started");
         try {
-            ResponseEntity<DepartmentFull[]> responseEntity = restTemplate.getForEntity(URL , DepartmentFull[].class);
+            ResponseEntity<EmployeeBase[]> responseEntity = restTemplate.getForEntity(URL, EmployeeBase[].class);
             if(responseEntity.getBody() != null) {
                 return Arrays.asList(responseEntity.getBody());
             } else {
                 return new ArrayList<>();
             }
         } catch(Exception e) {
-            LOGGER.debug("Method getDepartments: " + e.getMessage());
+            LOGGER.debug("Method getEmployees: "+e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    public DepartmentRequestModel getDepartmentById(Long id) {
-        LOGGER.debug("Method getDepartmentById("+id+") started");
+    public EmployeeFullRequestModel getEmployeeById(Long id) {
+        LOGGER.debug("Method getEmployeeById("+id+") started");
         try {
-            return restTemplate.getForEntity(URL + "/" + id, DepartmentRequestModel.class).getBody();
+            return restTemplate.getForEntity(URL + "/" + id, EmployeeFullRequestModel.class).getBody();
         } catch(Exception e) {
-            LOGGER.debug("Method getDepartmentById: " + e.getMessage());
+            LOGGER.debug("Method getEmployeeById: "+e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    public BaseModel createDepartment(DepartmentBase departmentBase) {
-        LOGGER.debug("Method createDepartment("+departmentBase+") started");
+    public BaseModel createEmployee(EmployeeFull employee) {
+        LOGGER.debug("Method createEmployee("+employee+") started");
         try {
-            return restTemplate.postForEntity(URL, departmentBase, BaseModel.class).getBody();
+            return restTemplate.postForEntity(URL, employee, BaseModel.class).getBody();
         } catch(Exception e) {
-            LOGGER.debug("Method createDepartment: " + e.getMessage());
+            LOGGER.debug("Method createEmployee: "+e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    public BaseModel updateDepartment(DepartmentBase departmentBase) {
-        LOGGER.debug("Method updateDepartment("+departmentBase+") started");
+    public BaseModel updateEmployee(EmployeeFull employee) {
+        LOGGER.debug("Method updateEmployee("+employee+") started");
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-            HttpEntity<DepartmentBase> entity = new HttpEntity<>(departmentBase, headers);
+            HttpEntity<EmployeeFull> entity = new HttpEntity<>(employee, headers);
             return restTemplate.exchange(URL, HttpMethod.PUT, entity, BaseModel.class).getBody();
         } catch(Exception e) {
-            LOGGER.debug("Method updateDepartment: " + e.getMessage());
+            LOGGER.debug("Method updateEmployee: "+e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    public BaseModel deleteDepartmentById(Long id) {
-        LOGGER.debug("Method deleteDepartmentById("+id+") started");
+    public BaseModel deleteEmployeeById(Long id) {
+        LOGGER.debug("Method deleteEmployeeById("+id+") started");
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setAccept(List.of(MediaType.APPLICATION_JSON));
             HttpEntity<Long> entity = new HttpEntity<>(headers);
             return restTemplate.exchange(URL + "/" + id, HttpMethod.DELETE, entity, BaseModel.class).getBody();
         } catch(Exception e) {
-            LOGGER.debug("Method deleteDepartmentById: " + e.getMessage());
+            LOGGER.debug("Method deleteEmployeeById: "+e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }

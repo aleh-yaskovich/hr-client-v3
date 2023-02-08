@@ -1,6 +1,5 @@
-package com.yaskovich.hr.controller.model;
+package com.yaskovich.hr.entity;
 
-import com.yaskovich.hr.entity.EmployeeFull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,7 +11,9 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class EmployeeFullRequestModel extends BaseModel {
-
-    private EmployeeFull employeeFull;
+public class EmployeeFull extends EmployeeBase {
+    private String email;
+    private int department;
+    private String position;
+    private String summary;
 }
