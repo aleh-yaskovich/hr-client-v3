@@ -20,21 +20,14 @@
 <div class="container overflow-hidden mt-5">
     <div class="row">
         <div class="col-12 pb-2">
-            <h1 class="pb-4">Aleh Yaskovich</h1>
+            <h1 class="pb-4" th:text="${employee.firstName+' '+employee.lastName}">Aleh Yaskovich</h1>
             <div>
-                <p><strong>Department:</strong> <span>IT</span></p>
-                <p><strong>Position:</strong> <span>Java Developer</span></p>
-                <p><strong>Salary:</strong> <span>1150</span></p>
-                <p><strong>Hiring:</strong> <span>2021/10/10</span></p>
-                <p><strong>Summary:</strong><br/><span>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. L
-                    orem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    It has survived not only five centuries, but also the leap into electronic typesetting,
-                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                    containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-                    PageMaker including versions of Lorem Ipsum.
-            </span></p>
+                <p><strong>Department:</strong> <span th:text="${employee.department}">IT</span></p>
+                <p><strong>Position:</strong> <span th:text="${employee.position}">Java Developer</span></p>
+                <p><strong>Email:</strong> <span th:text="${employee.email}">aaa@gmail.com</span></p>
+                <p><strong>Salary:</strong> <span th:text="${employee.salary}">1150</span></p>
+                <p><strong>Hiring:</strong> <span th:text="${employee.hiring}">2021/10/10</span></p>
+                <p><strong>Summary:</strong><br/><span th:text="${employee.summary}">Lorem Ipsum</span></p>
             </div>
         </div>
     </div>
@@ -44,21 +37,22 @@
 
 <div class="container">
     <div class="row">
-        <div class="mx-auto" style="width:300px;text-align:center;">
+        <div class="col-12 text-center">
             Human Resources Project<br>2023
         </div>
     </div>
 </div>
 
-<!-- Optional JavaScript; choose one of the two! -->
+<!-- Modal for Search -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true"
+     th:insert="fragments/modal_search.html :: div"></div>
 
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- Modal for LogIn -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true"
+     th:insert="fragments/modal_login.html :: div"></div>
 
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
--->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 </html>

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -15,6 +16,7 @@ public class EmployeeBase {
     private Long id;
     private String firstName;
     private String lastName;
+    private String department;
     private String salary;
-    private Date hiring;
+    private Date hiring = Date.valueOf(LocalDate.now());
 }
