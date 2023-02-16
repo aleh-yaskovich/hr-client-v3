@@ -45,7 +45,10 @@ public class DepartmentServiceRest {
             return restTemplate.getForEntity(URL + "/" + id, DepartmentRequestModel.class).getBody();
         } catch(Exception e) {
             LOGGER.debug("Method getDepartmentById: " + e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            return DepartmentRequestModel.builder()
+                    .status(BaseModel.Status.FAILURE)
+                    .message(e.getMessage())
+                    .build();
         }
     }
 
@@ -55,7 +58,10 @@ public class DepartmentServiceRest {
             return restTemplate.postForEntity(URL, departmentBase, BaseModel.class).getBody();
         } catch(Exception e) {
             LOGGER.debug("Method createDepartment: " + e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            return BaseModel.builder()
+                    .status(BaseModel.Status.FAILURE)
+                    .message(e.getMessage())
+                    .build();
         }
     }
 
@@ -68,7 +74,10 @@ public class DepartmentServiceRest {
             return restTemplate.exchange(URL, HttpMethod.PUT, entity, BaseModel.class).getBody();
         } catch(Exception e) {
             LOGGER.debug("Method updateDepartment: " + e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            return BaseModel.builder()
+                    .status(BaseModel.Status.FAILURE)
+                    .message(e.getMessage())
+                    .build();
         }
     }
 
@@ -81,7 +90,10 @@ public class DepartmentServiceRest {
             return restTemplate.exchange(URL + "/" + id, HttpMethod.DELETE, entity, BaseModel.class).getBody();
         } catch(Exception e) {
             LOGGER.debug("Method deleteDepartmentById: " + e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            return BaseModel.builder()
+                    .status(BaseModel.Status.FAILURE)
+                    .message(e.getMessage())
+                    .build();
         }
     }
 }

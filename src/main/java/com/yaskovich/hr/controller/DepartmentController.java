@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -133,7 +134,13 @@ public class DepartmentController {
     }
 
     private void getDepartments(Model model) {
-        List<DepartmentFull> departments = departmentServiceRest.getDepartments();
-        model.addAttribute("departments", departments);
+        try {
+            List<DepartmentFull> departments = departmentServiceRest.getDepartments();
+            model.addAttribute("departments", departments);
+        } catch(Exception e) {
+            model.addAttribute("departments", new ArrayList<>());
+            model.addAttribute("infoModal", "true");
+            model.addAttribute("infoMessage", e.getMessage());
+        }
     }
 }
