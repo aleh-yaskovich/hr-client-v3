@@ -130,7 +130,7 @@ class DepartmentControllerTest {
     }
 
     @Test
-    void shouldReturnDepartmentPageWhenNewDepartmentCreated() throws Exception {
+    void shouldReturnDepartmentsPageWhenNewDepartmentCreated() throws Exception {
         String departmentTitle = "TEST";
         DepartmentBase department = new DepartmentBase(null, departmentTitle);
         BaseModel baseModel = BaseModel.builder().status(BaseModel.Status.SUCCESS).build();
@@ -193,7 +193,7 @@ class DepartmentControllerTest {
     }
 
     @Test
-    void shouldReturnDepartmentPageWhenDepartmentUpdated() throws Exception {
+    void shouldReturnDepartmentsPageWhenDepartmentUpdated() throws Exception {
         Long id = 1L;
         String title = "TEST";
         DepartmentBase department = new DepartmentBase(id, title);
@@ -233,7 +233,7 @@ class DepartmentControllerTest {
     }
 
     @Test
-    void shouldReturnDepartmentPageWhenDepartmentDeleted() throws Exception {
+    void shouldReturnDepartmentsPageWhenDepartmentDeleted() throws Exception {
         Long id = 1L;
         BaseModel baseModel = BaseModel.builder().status(BaseModel.Status.SUCCESS).build();
         when(serviceRest.deleteDepartmentById(any(Long.class))).thenReturn(baseModel);

@@ -2,7 +2,6 @@ package com.yaskovich.hr.service;
 
 import com.yaskovich.hr.controller.model.BaseModel;
 import com.yaskovich.hr.controller.model.EmployeeFullRequestModel;
-import com.yaskovich.hr.entity.DepartmentBase;
 import com.yaskovich.hr.entity.EmployeeBase;
 import com.yaskovich.hr.entity.EmployeeFull;
 import org.slf4j.Logger;
@@ -46,7 +45,10 @@ public class EmployeeServiceRest {
             return restTemplate.getForEntity(URL + "/" + id, EmployeeFullRequestModel.class).getBody();
         } catch(Exception e) {
             LOGGER.debug("Method getEmployeeById: "+e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            return EmployeeFullRequestModel.builder()
+                    .status(BaseModel.Status.FAILURE)
+                    .message(e.getMessage())
+                    .build();
         }
     }
 
@@ -56,7 +58,10 @@ public class EmployeeServiceRest {
             return restTemplate.postForEntity(URL, employee, BaseModel.class).getBody();
         } catch(Exception e) {
             LOGGER.debug("Method createEmployee: "+e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            return BaseModel.builder()
+                    .status(BaseModel.Status.FAILURE)
+                    .message(e.getMessage())
+                    .build();
         }
     }
 
@@ -69,7 +74,10 @@ public class EmployeeServiceRest {
             return restTemplate.exchange(URL, HttpMethod.PUT, entity, BaseModel.class).getBody();
         } catch(Exception e) {
             LOGGER.debug("Method updateEmployee: "+e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            return BaseModel.builder()
+                    .status(BaseModel.Status.FAILURE)
+                    .message(e.getMessage())
+                    .build();
         }
     }
 
@@ -82,7 +90,10 @@ public class EmployeeServiceRest {
             return restTemplate.exchange(URL + "/" + id, HttpMethod.DELETE, entity, BaseModel.class).getBody();
         } catch(Exception e) {
             LOGGER.debug("Method deleteEmployeeById: "+e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            return BaseModel.builder()
+                    .status(BaseModel.Status.FAILURE)
+                    .message(e.getMessage())
+                    .build();
         }
     }
 }

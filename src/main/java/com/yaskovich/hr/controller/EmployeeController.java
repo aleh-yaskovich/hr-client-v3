@@ -148,8 +148,14 @@ public class EmployeeController {
     }
 
     private void getEmployees(Model model) {
-        List<EmployeeBase> employees = employeeServiceRest.getEmployees();
-        model.addAttribute("employees", employees);
+        try {
+            List<EmployeeBase> employees = employeeServiceRest.getEmployees();
+            model.addAttribute("employees", employees);
+        } catch(Exception e) {
+            model.addAttribute("employees", new ArrayList<>());
+            model.addAttribute("infoModal", "true");
+            model.addAttribute("infoMessage", e.getMessage());
+        }
     }
 
     private void checkEmployee(EmployeeFull employee) {
